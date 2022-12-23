@@ -1,0 +1,15 @@
+version: "3.9"
+services:  
+  app:
+    build: .
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+  
+  database:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+  
