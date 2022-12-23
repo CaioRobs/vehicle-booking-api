@@ -6,12 +6,15 @@ services:
       - .env
     restart: always
     depends_on:
-      - database
+      - db
     ports:
       - "3000:3000"
   
-  database:
+  db:
     image: mongo:latest
+    restart: always
+    env_file:
+     - .env
     ports:
       - '27017:27017'
   
