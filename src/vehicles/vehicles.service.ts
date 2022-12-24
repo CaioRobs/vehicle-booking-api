@@ -15,23 +15,35 @@ export class VehiclesService {
     return createdVehicle.save();
   }
 
-  async findAll(): Promise<Vehicle[]> {
+  findAll(): Promise<Vehicle[]> {
     return this.vehicleModel.find().exec();
   }
 
-  async findOne(id: string): Promise<Vehicle> {
+  findOne(id: string): Promise<Vehicle | null> {
     return this.vehicleModel.findById(id).exec();
   }
 
-  async reserveVehicle(id: string): Promise<Vehicle> {
-    return this.vehicleModel
-      .findByIdAndUpdate(id, { $set: { available: false } }, { new: true })
-      .exec();
+  async reserveVehicle(id: string): Promise<Vehicle | null> {
+    const prePatchVehicle = await this.vehicleModel.findById(id).exec();
+
+    if (prePatchVehicle === null) return prePatchVehicle;
+    if (!prePatchVehicle.available) throw new Error('Vehicle not available');
+
+    prePatchVehicle.available = false;
+    prePatchVehicle.save();
+
+    return prePatchVehicle;
   }
 
-  async returnVehicle(id: string): Promise<Vehicle> {
-    return this.vehicleModel
-      .findByIdAndUpdate(id, { $set: { available: true } }, { new: true })
-      .exec();
+  async returnVehicle(id: string): Promise<Vehicle | null> {
+    const prePatchVehicle = await this.vehicleModel.findById(id).exec();
+
+    if (prePatchVehicle === null) return prePatchVehicle;
+    if (prePatchVehicle.available) throw new Error('Vehicle already avaliable');
+
+    prePatchVehicle.available = true;
+    prePatchVehicle.save();
+
+    return prePatchVehicle;
   }
 }
