@@ -29,13 +29,13 @@ export class VehiclesController {
     return this.vehiclesService.findOne(id);
   }
 
-  // @Patch('reserve/:id')
-  // reserveVehicle(@Param('id') id: string) {
-  //   return this.vehiclesService.reserve(id);
-  // }
+  @Patch('reserve/:id')
+  reserveVehicle(@Param('id') id: string) {
+    return this.vehiclesService.reserveVehicle(id);
+  }
 
-  // @Patch('return/:id')
-  // returnVehicle(@Param('id') id: string) {
-  //   return this.vehiclesService.return(id);
-  // }
+  @Patch('return/:id')
+  returnVehicle(@Param('id') id: string) {
+    return this.vehiclesService.returnVehicle(id);
+  }
 }

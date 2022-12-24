@@ -22,4 +22,16 @@ export class VehiclesService {
   async findOne(id: string): Promise<Vehicle> {
     return this.vehicleModel.findById(id).exec();
   }
+
+  async reserveVehicle(id: string): Promise<Vehicle> {
+    return this.vehicleModel
+      .findByIdAndUpdate(id, { $set: { available: false } }, { new: true })
+      .exec();
+  }
+
+  async returnVehicle(id: string): Promise<Vehicle> {
+    return this.vehicleModel
+      .findByIdAndUpdate(id, { $set: { available: true } }, { new: true })
+      .exec();
+  }
 }
