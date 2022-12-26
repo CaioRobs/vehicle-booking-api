@@ -1,25 +1,48 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const seedDb = async () => {
-  await Car.deleteMany({});
-  await Car.insertMany(cars);
-};
+const { UserSchema } = require('../dist/users/schemas/user.schema.js');
+const userModel = mongoose.model('User', UserSchema);
+
+const { VehicleSchema } = require('../dist/vehicles/schemas/vehicle.schema.js');
+const vehicleModel = mongoose.model('Vehicle', VehicleSchema);
+
+const vehicles = require('./vehicles.json');
+const users = require('./users.json');
 
 const connect = () => {
   mongoose.connect(process.env.MONGO_URI);
   console.log('connection to seed succeeded');
 };
 const closeConnection = () => {
-  mongoose.connect.close();
+  mongoose.connection.close();
   console.log('connection to seed closed');
 };
 
-try {
-  connect();
-  seedDb();
-  closeConnection();
-} catch (error) {
-  console.error(error);
-  closeConnection();
-}
+const insertVehicles = async () => {
+  await vehicleModel.deleteMany({});
+  await vehicleModel.insertMany(vehicles);
+  return;
+};
+const insertUsers = async () => {
+  await userModel.deleteMany({});
+  await userModel.insertMany(users);
+  return;
+};
+
+const seedDb = async () => {
+  return Promise.all([insertVehicles(), insertUsers()]);
+};
+
+const main = async () => {
+  try {
+    connect();
+    await seedDb();
+    closeConnection();
+  } catch (error) {
+    console.error(error);
+    closeConnection();
+  }
+};
+
+main();

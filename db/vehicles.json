@@ -1,1 +1,24 @@
-[{}, {}, {}]
+[
+  {
+    "brand": "Ford",
+    "model": "Ka",
+    "year": "2012",
+    "color": "Branco",
+    "available": "true"
+  },
+  {
+    "brand": "Chevrolet",
+    "model": "Tracker",
+    "year": "2019",
+    "color": "Preto",
+    "available": "true"
+  },
+  {
+    "brand": "Volkswagen",
+    "model": "Golf",
+    "year": "2015",
+    "color": "Vermelho",
+    "available": "true"
+  }
+]
+

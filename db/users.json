@@ -1,1 +1,20 @@
-[{}, {}, {}]
+[
+  {
+    "name": "Jack",
+    "username": "jackoo123",
+    "email": "jack@email.com",
+    "password": "jackPW"
+  },
+  {
+    "name": "peter",
+    "username": "peteroo123",
+    "email": "peter@email.com",
+    "password": "peterPW"
+  },
+  {
+    "name": "jason",
+    "username": "jasonoo123",
+    "email": "jason@email.com",
+    "password": "jasonPW"
+  }
+]
