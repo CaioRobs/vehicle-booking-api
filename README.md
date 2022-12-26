@@ -9,17 +9,17 @@ Para rodar o projeto, primeiro adicione o arquivo .env enviado por email à raiz
 $ docker-compose -f "docker-compose.yml" --env-file .env up -d --build
 ```
 ## Rotas
-Health-check -> [http://localhost:3000](http://localhost:3000)[GET]
+Health-check -> [http://localhost:3000](http://localhost:3000) [GET]
 
-Usuarios Disponíveis -> [http://localhost:3000/users](http://localhost:3000/users)[GET]
+Usuarios Disponíveis -> [http://localhost:3000/users](http://localhost:3000/users) [GET]
 
-Login -> [http://localhost:3000/auth/login](http://localhost:3000/auth/login)[POST]
+Login -> [http://localhost:3000/auth/login](http://localhost:3000/auth/login) [POST]
 
 Após o Login, adicione o token recebido ao header das requisições(Bearer token)
 Rotas Protegidas
 
-Listar veículos -> [http://localhost:3000/vehicles](http://localhost:3000/vehicles)[GET]
+Listar veículos -> [http://localhost:3000/vehicles](http://localhost:3000/vehicles) [GET]
 
-Reservar veículo -> [http://localhost:3000/vehicles/reserve/:id](http://localhost:3000/vehicles/reserve/:id)[PATCH]
+Reservar veículo -> [http://localhost:3000/vehicles/reserve/:id](http://localhost:3000/vehicles/reserve/:id) [PATCH]
 
-Retornar veículo -> [http://localhost:3000/vehicles/return/:id](http://localhost:3000/vehicles/return/:id)[PATCH]
+Retornar veículo -> [http://localhost:3000/vehicles/return/:id](http://localhost:3000/vehicles/return/:id) [PATCH]
