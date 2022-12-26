@@ -20,8 +20,15 @@ export class UsersService {
     return this.userModel.findOne({ email }).exec();
   }
 
+  async findByEmailWithPassword(email: string): Promise<User | null> {
+    return this.userModel.findOne({ email }).select('+password').exec();
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    if (createUserDto.password === createUserDto.confirmPassword) {
+      const { confirmPassword, ...user } = createUserDto;
+      const createdUser = new this.userModel(user);
+      return createdUser.save();
+    }
   }
 }
