@@ -10,5 +10,6 @@ import { VehiclesService } from './vehicles.service';
   ],
   controllers: [VehiclesController],
   providers: [VehiclesService],
+  exports: [MongooseModule],
 })
 export class VehiclesModule {}
