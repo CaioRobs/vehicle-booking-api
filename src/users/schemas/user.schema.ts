@@ -5,7 +5,7 @@ import { Vehicle } from 'src/vehicles/schemas/vehicle.schema';
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
   @Prop({ required: true })
   name: string;
@@ -16,7 +16,7 @@ export class User {
   @Prop({ required: true })
   email: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, select: false })
   password: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Owner' })
@@ -24,3 +24,5 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+export type UserWithoutPassword = Omit<User, 'password'>;

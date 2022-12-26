@@ -1,7 +1,7 @@
 export class CreateVehicleDto {
-  private readonly brand: string;
-  private readonly model: string;
-  private readonly year: string;
-  private readonly color: string;
-  private readonly available: boolean;
+  readonly brand: string;
+  readonly model: string;
+  readonly year: string;
+  readonly color: string;
+  readonly available: boolean;
 }

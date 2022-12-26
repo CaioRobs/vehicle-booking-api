@@ -1,7 +1,10 @@
+import { Vehicle } from 'src/vehicles/schemas/vehicle.schema';
+
 export class CreateUserDto {
-  private readonly name: string;
-  private readonly username: string;
-  private readonly email: string;
-  private readonly password: string;
-  private readonly confirmPassword: string;
+  readonly name: string;
+  readonly username: string;
+  readonly email: string;
+  readonly password: string;
+  readonly vehicle: Vehicle;
+  readonly confirmPassword: string;
 }
