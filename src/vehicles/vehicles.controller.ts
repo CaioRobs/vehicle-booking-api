@@ -9,13 +9,16 @@ import {
   BadRequestException,
   Res,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { VehiclesService } from './vehicles.service';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { Vehicle } from './schemas/vehicle.schema';
 import { Response } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('vehicles')
+@UseGuards(JwtAuthGuard)
 export class VehiclesController {
   constructor(private readonly vehiclesService: VehiclesService) {}
 
