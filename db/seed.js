@@ -38,6 +38,7 @@ const main = async () => {
   try {
     connect();
     await seedDb();
+    console.log('seeding succesfull');
     closeConnection();
   } catch (error) {
     console.error(error);
