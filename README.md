@@ -4,7 +4,7 @@ API de Reserva de veiculos escrita em TypeScript utilizando o framework NestJS e
 
 ## How to run
 
-Para rodar o projeto, primeiro adicione o arquivo .env enviado por email à raiz do projeto e rodar o seguinte comando(necessário docker-compose):
+Para rodar o projeto, primeiro adicione o arquivo .env enviado por email à raiz do projeto e rode o seguinte comando(necessário docker-compose):
 ```bash
 $ docker-compose -f "docker-compose.yml" --env-file .env up -d --build
 ```
