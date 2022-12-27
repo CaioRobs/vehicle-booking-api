@@ -15,7 +15,7 @@ import {
 import { VehiclesService } from './vehicles.service';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { Vehicle } from './schemas/vehicle.schema';
-import { Request, request, Response } from 'express';
+import { Response } from 'express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('vehicles')
