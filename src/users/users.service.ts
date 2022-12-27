@@ -1,8 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Document, Model, Types } from 'mongoose';
+import { Vehicle } from 'src/vehicles/schemas/vehicle.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
+
+type VehicleDocument = Document<unknown, any, Vehicle> &
+  Vehicle & {
+    _id: Types.ObjectId;
+  } & Required<{
+    _id: Types.ObjectId;
+  }>;
 
 @Injectable()
 export class UsersService {
@@ -30,5 +38,15 @@ export class UsersService {
       const createdUser = new this.userModel(user);
       return createdUser.save();
     }
+  }
+
+  async addVehicle(email: string, vehicle: VehicleDocument): Promise<void> {
+    const user = await this.userModel.findOne({ email }).exec();
+    if (user.vehicle) {
+      throw new Error('User already got vehicle');
+    }
+    user.vehicle = vehicle;
+    user.save();
+    return;
   }
 }

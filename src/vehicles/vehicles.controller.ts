@@ -10,11 +10,12 @@ import {
   Res,
   HttpStatus,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { VehiclesService } from './vehicles.service';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { Vehicle } from './schemas/vehicle.schema';
-import { Response } from 'express';
+import { Request, request, Response } from 'express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('vehicles')
@@ -46,9 +47,12 @@ export class VehiclesController {
   }
 
   @Patch('reserve/:id')
-  async reserveVehicle(@Param('id') id: string) {
+  async reserveVehicle(@Param('id') id: string, @Req() request: any) {
     try {
-      const vehicle = await this.vehiclesService.reserveVehicle(id);
+      const vehicle = await this.vehiclesService.reserveVehicle(
+        id,
+        request.user,
+      );
       this.verifyVehicle(vehicle);
       return;
     } catch (error) {
@@ -83,6 +87,12 @@ export class VehiclesController {
 
     if (error.message.includes('Vehicle already avaliable'))
       throw new BadRequestException('Vehicle already avaliable');
+
+    if (error.message.includes('User already got vehicle'))
+      throw new BadRequestException('User already got vehicle');
+
+    if (error.message.includes("User don't have any vehicle"))
+      throw new BadRequestException("User don't have any vehicle");
     else throw error;
   };
 }
