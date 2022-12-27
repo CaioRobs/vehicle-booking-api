@@ -1,6 +1,6 @@
 # Descrição
 
-API de Reserva de veiculos escrita em TypeScript, utilizando NestJS e MongoDB
+API de Reserva de veiculos escrita em TypeScript utilizando o framework NestJS e um banco MongoDB.
 
 ## How to run
 
@@ -21,8 +21,8 @@ Usuarios Disponíveis -> [http://localhost:3000/users](http://localhost:3000/use
 
 Login -> [http://localhost:3000/auth/login](http://localhost:3000/auth/login) [POST]
 
-Após o Login, adicione o token recebido ao header das requisições(Bearer token)
-Rotas Protegidas
+##Rotas Protegidas
+Após o Login, adicione o access_token recebido ao header das requisições(Bearer token)
 
 Listar veículos -> [http://localhost:3000/vehicles](http://localhost:3000/vehicles) [GET]
 
