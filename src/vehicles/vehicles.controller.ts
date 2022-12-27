@@ -75,7 +75,7 @@ export class VehiclesController {
   }
 
   verifyVehicle = (vehicle: Vehicle) => {
-    if (vehicle === null) throw new NotFoundException();
+    if (vehicle === null) throw new NotFoundException('Vehicle not found');
   };
 
   verifyError = (error: Error) => {
@@ -96,6 +96,9 @@ export class VehiclesController {
 
     if (error.message.includes("User don't have any vehicle"))
       throw new BadRequestException("User don't have any vehicle");
+
+    if (error.message.includes('User can only return its own vehicle'))
+      throw new BadRequestException('User can only return its own vehicle');
     else throw error;
   };
 }

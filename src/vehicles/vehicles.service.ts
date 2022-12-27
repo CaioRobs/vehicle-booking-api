@@ -46,7 +46,7 @@ export class VehiclesService {
     if (prePatchVehicle === null) return prePatchVehicle;
     if (prePatchVehicle.available) throw new Error('Vehicle already avaliable');
 
-    await this.userService.removeVehicle(requestUser.email);
+    await this.userService.removeVehicle(requestUser.email, prePatchVehicle);
 
     prePatchVehicle.available = true;
     prePatchVehicle.save();

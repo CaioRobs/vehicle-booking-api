@@ -1,18 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Document, Model, Types } from 'mongoose';
-import { use } from 'passport';
+import { Document, Types, Model } from 'mongoose';
 import { Vehicle } from 'src/vehicles/schemas/vehicle.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
 
-type VehicleDocument = Document<unknown, any, Vehicle> &
+type vehicleWithId = Document<unknown, any, Vehicle> &
   Vehicle & {
     _id: Types.ObjectId;
   } & Required<{
     _id: Types.ObjectId;
   }>;
-
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
@@ -41,17 +39,21 @@ export class UsersService {
     }
   }
 
-  async addVehicle(email: string, vehicle: VehicleDocument): Promise<void> {
+  async addVehicle(email: string, vehicle: vehicleWithId): Promise<void> {
     const user = await this.userModel.findOne({ email }).exec();
     if (user.vehicle) throw new Error('User already got vehicle');
-    user.vehicle = vehicle;
+    user.vehicle = vehicle._id;
     user.save();
     return;
   }
 
-  async removeVehicle(email: string): Promise<void> {
+  async removeVehicle(email: string, vehicle: vehicleWithId): Promise<void> {
     const user = await this.userModel.findOne({ email }).exec();
     if (!user.vehicle) throw new Error("User don't have any vehicle");
+
+    if (!vehicle._id.equals(user.vehicle))
+      throw new Error('User can only return its own vehicle');
+
     user.vehicle = null;
     user.save();
     return;
