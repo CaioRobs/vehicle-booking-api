@@ -8,6 +8,12 @@ Para rodar o projeto, primeiro adicione o arquivo .env enviado por email à raiz
 ```bash
 $ docker-compose -f "docker-compose.yml" --env-file .env up -d --build
 ```
+
+Use o comando 
+```bash
+docker logs --tail 1000 -f vehicle-booking-api_app_1
+```
+para ver os logs e se a aplicação terminou de iniciar.
 ## Rotas
 Health-check -> [http://localhost:3000](http://localhost:3000) [GET]
 
