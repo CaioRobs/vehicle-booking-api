@@ -1,10 +1,18 @@
-import { Vehicle } from 'src/vehicles/schemas/vehicle.schema';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
+  @ApiProperty()
   readonly name: string;
+
+  @ApiProperty()
   readonly username: string;
+
+  @ApiProperty()
   readonly email: string;
+
+  @ApiProperty()
   readonly password: string;
-  readonly vehicle: Vehicle;
+
+  @ApiProperty()
   readonly confirmPassword: string;
 }
