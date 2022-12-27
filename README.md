@@ -1,6 +1,6 @@
 # Descrição
 
-API de Reserva de veiculos escrita em TypeScript, utilizando NestJS e MongoDB
+API de Reserva de veiculos escrita em TypeScript utilizando o framework NestJS e um banco MongoDB.
 
 ## How to run
 
