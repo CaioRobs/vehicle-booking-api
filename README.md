@@ -9,11 +9,11 @@ Para rodar o projeto, primeiro adicione o arquivo .env enviado por email à raiz
 $ docker-compose -f "docker-compose.yml" --env-file .env up -d --build
 ```
 
-Use o comando 
+Para ver os logs e se a aplicação está completamente iniciada, use o comando
 ```bash
 docker logs --tail 1000 -f vehicle-booking-api_app_1
 ```
-para ver os logs e se a aplicação terminou de iniciar.
+
 ## Rotas
 Documentação Swagger -> [http://localhost:3000/docs](http://localhost:3000/docs)
 
