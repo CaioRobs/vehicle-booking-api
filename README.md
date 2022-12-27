@@ -15,8 +15,9 @@ docker logs --tail 1000 -f vehicle-booking-api_app_1
 ```
 para ver os logs e se a aplicação terminou de iniciar.
 ## Rotas
-Health-check -> [http://localhost:3000](http://localhost:3000) [GET]
 Documentação Swagger -> [http://localhost:3000/docs](http://localhost:3000/docs)
+
+Health-check -> [http://localhost:3000](http://localhost:3000) [GET]
 
 Usuarios Disponíveis -> [http://localhost:3000/users](http://localhost:3000/users) [GET]
 
