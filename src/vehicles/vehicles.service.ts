@@ -40,11 +40,13 @@ export class VehiclesService {
     return prePatchVehicle;
   }
 
-  async returnVehicle(id: string): Promise<Vehicle | null> {
+  async returnVehicle(id: string, requestUser: User): Promise<Vehicle | null> {
     const prePatchVehicle = await this.vehicleModel.findById(id).exec();
 
     if (prePatchVehicle === null) return prePatchVehicle;
     if (prePatchVehicle.available) throw new Error('Vehicle already avaliable');
+
+    await this.userService.removeVehicle(requestUser.email);
 
     prePatchVehicle.available = true;
     prePatchVehicle.save();

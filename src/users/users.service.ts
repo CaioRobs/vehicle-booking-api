@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Document, Model, Types } from 'mongoose';
+import { use } from 'passport';
 import { Vehicle } from 'src/vehicles/schemas/vehicle.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
@@ -42,10 +43,16 @@ export class UsersService {
 
   async addVehicle(email: string, vehicle: VehicleDocument): Promise<void> {
     const user = await this.userModel.findOne({ email }).exec();
-    if (user.vehicle) {
-      throw new Error('User already got vehicle');
-    }
+    if (user.vehicle) throw new Error('User already got vehicle');
     user.vehicle = vehicle;
+    user.save();
+    return;
+  }
+
+  async removeVehicle(email: string): Promise<void> {
+    const user = await this.userModel.findOne({ email }).exec();
+    if (!user.vehicle) throw new Error("User don't have any vehicle");
+    user.vehicle = null;
     user.save();
     return;
   }

@@ -61,9 +61,12 @@ export class VehiclesController {
   }
 
   @Patch('return/:id')
-  async returnVehicle(@Param('id') id: string) {
+  async returnVehicle(@Param('id') id: string, @Req() request: any) {
     try {
-      const vehicle = await this.vehiclesService.returnVehicle(id);
+      const vehicle = await this.vehiclesService.returnVehicle(
+        id,
+        request.user,
+      );
       this.verifyVehicle(vehicle);
       return;
     } catch (error) {
