@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, UserWithoutPassword } from 'src/users/schemas/user.schema';
+import { UserWithoutPassword } from 'src/users/schemas/user.schema';
 import { UsersService } from '../users/users.service';
+import { IPayload } from './interface/Payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -21,8 +22,8 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User): Promise<{ access_token: string }> {
-    const payload = {
+  async login(user: UserWithoutPassword): Promise<{ access_token: string }> {
+    const payload: IPayload = {
       email: user.email,
       username: user.username,
       name: user.name,
