@@ -9,6 +9,7 @@ async function bootstrap() {
     .setTitle('Vehicle Booking')
     .setDescription("The ultimate vehicles-renting system's API")
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

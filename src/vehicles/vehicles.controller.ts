@@ -10,7 +10,7 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { VehiclesService } from './vehicles.service';
 import { Vehicle } from './schemas/vehicle.schema';
@@ -19,6 +19,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @Controller('vehicles')
 @UseGuards(JwtAuthGuard)
 @ApiTags('Vehicles')
+@ApiBearerAuth()
 export class VehiclesController {
   constructor(private readonly vehiclesService: VehiclesService) {}
 
