@@ -21,6 +21,10 @@ Health-check -> [http://localhost:3000](http://localhost:3000) [GET]
 
 Usuarios Disponíveis -> [http://localhost:3000/users](http://localhost:3000/users) [GET]
 
+Usuarios Específico -> [http://localhost:3000/users/:id](http://localhost:3000/users/:id) [GET]
+
+Criar Usuário -> [http://localhost:3000/users](http://localhost:3000/users) [POST]
+
 Login -> [http://localhost:3000/auth/login](http://localhost:3000/auth/login) [POST]
 
 ## Rotas Protegidas
