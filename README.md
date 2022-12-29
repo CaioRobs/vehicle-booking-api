@@ -34,4 +34,5 @@ Reservar veículo -> [http://localhost:3000/vehicles/reserve/:id](http://localho
 Retornar veículo -> [http://localhost:3000/vehicles/return/:id](http://localhost:3000/vehicles/return/:id) [PATCH]
 
 Um usuário logado só pode ter um único veículo alugado e só pode devolver o próprio veículo.
+
 Para saber qual veículo está e posse de certo usuário, veja o id no campo vehicle na lista de usuários ou no get users/:id
