@@ -1,6 +1,6 @@
 # Descrição
 
-API de Reserva de veiculos escrita em TypeScript utilizando o framework NestJS e um banco MongoDB, documentada com Swagger. Token JWT para autenticar. Containerizada com docker, rodando via Docker-Compose.
+API de Reserva de veiculos escrita em TypeScript utilizando o framework NestJS e um banco MongoDB, documentada com Swagger. Token JWT para autenticar. Containerizada com Docker, rodando via Docker-Compose.
 
 ## How to run
 
